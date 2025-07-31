@@ -348,10 +348,6 @@ body {
   content: "★";
 }
 
-.error-message {
-  color: #ff5555;
-}
-
 /* Modal Styles */
 .modal {
   display: none;
@@ -360,44 +356,54 @@ body {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.7);
+  background-color: rgba(0, 0, 0, 0.8);
   z-index: 1000;
   justify-content: center;
   align-items: center;
 }
 
 .modal-content {
-  background-color: #222;
-  border: 1px solid var(--term-color);
-  border-radius: 5px;
+  background-color: #1a1a1a;
+  border: 2px solid var(--term-color);
+  border-radius: 8px;
   width: 90%;
-  max-width: 800px;
+  max-width: 600px;
   max-height: 90vh;
   display: flex;
   flex-direction: column;
-  box-shadow: 0 0 20px rgba(51, 255, 51, 0.3);
+  box-shadow: 0 0 30px rgba(51, 255, 51, 0.3);
+  overflow: hidden;
 }
 
 .modal-header {
-  padding: 15px;
+  padding: 20px;
   border-bottom: 1px solid rgba(51, 255, 51, 0.3);
   display: flex;
   justify-content: space-between;
   align-items: center;
+  background-color: rgba(51, 255, 51, 0.05);
+}
+
+.modal-header h2 {
+  color: var(--term-color);
+  margin: 0;
+  font-size: 1.5em;
 }
 
 .modal-body {
-  padding: 15px;
+  padding: 20px;
   overflow-y: auto;
   flex: 1;
+  max-height: 60vh;
 }
 
 .modal-footer {
-  padding: 15px;
+  padding: 20px;
   border-top: 1px solid rgba(51, 255, 51, 0.3);
   display: flex;
   justify-content: flex-end;
   gap: 10px;
+  background-color: rgba(51, 255, 51, 0.05);
 }
 
 .close-btn {
@@ -406,16 +412,34 @@ body {
   color: var(--term-color);
   font-size: 24px;
   cursor: pointer;
+  padding: 0;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: background-color 0.2s;
+}
+
+.close-btn:hover {
+  background-color: rgba(51, 255, 51, 0.1);
 }
 
 .btn {
-  padding: 8px 16px;
+  padding: 10px 20px;
   background-color: transparent;
   border: 1px solid var(--term-color);
   color: var(--term-color);
   cursor: pointer;
-  border-radius: 3px;
+  border-radius: 4px;
   font-family: var(--font-family);
+  font-size: 14px;
+  transition: all 0.2s;
+}
+
+.btn:hover {
+  background-color: rgba(51, 255, 51, 0.1);
 }
 
 .btn-primary {
@@ -423,45 +447,77 @@ body {
   color: var(--term-bg);
 }
 
+.btn-primary:hover {
+  background-color: rgba(51, 255, 51, 0.8);
+}
+
 .form-group {
-  margin-bottom: 15px;
+  margin-bottom: 20px;
 }
 
 .form-group label {
   display: block;
-  margin-bottom: 5px;
+  margin-bottom: 8px;
+  color: var(--term-color);
+  font-weight: bold;
 }
 
 .form-group input, .form-group textarea, .form-group select {
   width: 100%;
-  padding: 8px;
-  background-color: #333;
+  padding: 10px;
+  background-color: #2a2a2a;
   border: 1px solid rgba(51, 255, 51, 0.3);
   color: var(--term-color);
   font-family: var(--font-family);
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.form-group input:focus, .form-group textarea:focus, .form-group select:focus {
+  outline: none;
+  border-color: var(--term-color);
+  box-shadow: 0 0 5px rgba(51, 255, 51, 0.3);
 }
 
 .form-group textarea {
-  min-height: 100px;
+  min-height: 80px;
   resize: vertical;
+}
+
+.form-section {
+  margin-bottom: 30px;
+}
+
+.form-section h3 {
+  color: var(--term-color);
+  margin-bottom: 15px;
+  padding-bottom: 5px;
+  border-bottom: 1px solid rgba(51, 255, 51, 0.3);
+  font-size: 1.2em;
 }
 
 .theme-selector {
   display: flex;
-  gap: 10px;
+  gap: 15px;
   margin-bottom: 15px;
 }
 
 .theme-option {
-  width: 30px;
-  height: 30px;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
   cursor: pointer;
-  border: 2px solid transparent;
+  border: 3px solid transparent;
+  transition: all 0.2s;
+}
+
+.theme-option:hover {
+  transform: scale(1.1);
 }
 
 .theme-option.active {
   border-color: var(--term-color);
+  box-shadow: 0 0 10px rgba(51, 255, 51, 0.5);
 }
 
 .theme-green {
@@ -484,6 +540,7 @@ body {
 
 .toggle-group input[type="checkbox"] {
   margin-right: 10px;
+  width: auto;
 }
 
 .range-group {
@@ -492,6 +549,29 @@ body {
 
 .range-group input[type="range"] {
   width: 100%;
+  margin: 10px 0;
+}
+
+.range-group span {
+  color: var(--term-color);
+  font-size: 0.9em;
+  margin-left: 10px;
+}
+
+.success-message {
+  color: #33ff33;
+  padding: 10px;
+  background-color: rgba(51, 255, 51, 0.1);
+  border-left: 3px solid #33ff33;
+  margin: 10px 0;
+}
+
+.error-message {
+  color: #ff5555;
+  padding: 10px;
+  background-color: rgba(255, 85, 85, 0.1);
+  border-left: 3px solid #ff5555;
+  margin: 10px 0;
 }
 
 /* Responsive Design */
