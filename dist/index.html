@@ -514,27 +514,7 @@ body {
   <script type="module" src="js/terminal.js"></script>
   <script type="module" src="js/settings.js"></script>
   
-  <script>
-    // Live reload script
-    (function() {
-      const ws = new WebSocket('ws://localhost:3001/ws');
-      
-      ws.onmessage = function(event) {
-        if (event.data === 'reload') {
-          console.log('Reloading page...');
-          window.location.reload();
-        }
-      };
-      
-      ws.onclose = function() {
-        console.log('WebSocket connection closed');
-      };
-      
-      ws.onerror = function(error) {
-        console.error('WebSocket error:', error);
-      };
-    })();
-  </script>
+  
 
     <script>
       if ('serviceWorker' in navigator) {
