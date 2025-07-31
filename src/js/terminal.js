@@ -377,13 +377,38 @@ class Terminal {
       this.printLine('');
       this.printLine(certData.title, 'section-title');
       
+      // Create container for certifications
+      const certList = document.createElement('div');
+      certList.className = 'certification-list';
+      
       certData.list.forEach(item => {
-        this.printLine('');
-        this.printLine(item.name, 'certification-name');
-        this.printLine(item.date, 'certification-date');
+        const certItem = document.createElement('div');
+        certItem.className = 'certification-item';
+        
+        const badge = document.createElement('div');
+        badge.className = 'certification-badge';
+        
+        const info = document.createElement('div');
+        info.className = 'certification-info';
+        
+        const name = document.createElement('div');
+        name.className = 'certification-name';
+        name.textContent = item.name;
+        
+        const date = document.createElement('div');
+        date.className = 'certification-date';
+        date.textContent = item.date;
+        
+        info.appendChild(name);
+        info.appendChild(date);
+        certItem.appendChild(badge);
+        certItem.appendChild(info);
+        certList.appendChild(certItem);
       });
       
+      this.outputElement.appendChild(certList);
       this.printLine('');
+      
     } else if (command === 'awards') {
       const awardsData = this.content.awards;
       if (!awardsData) return;
@@ -391,12 +416,36 @@ class Terminal {
       this.printLine('');
       this.printLine(awardsData.title, 'section-title');
       
+      // Create container for awards
+      const awardList = document.createElement('div');
+      awardList.className = 'award-list';
+      
       awardsData.list.forEach(item => {
-        this.printLine('');
-        this.printLine(item.name, 'award-name');
-        this.printLine(item.period, 'award-period');
+        const awardItem = document.createElement('div');
+        awardItem.className = 'award-item';
+        
+        const badge = document.createElement('div');
+        badge.className = 'award-badge';
+        
+        const info = document.createElement('div');
+        info.className = 'award-info';
+        
+        const name = document.createElement('div');
+        name.className = 'award-name';
+        name.textContent = item.name;
+        
+        const period = document.createElement('div');
+        period.className = 'award-period';
+        period.textContent = item.period;
+        
+        info.appendChild(name);
+        info.appendChild(period);
+        awardItem.appendChild(badge);
+        awardItem.appendChild(info);
+        awardList.appendChild(awardItem);
       });
       
+      this.outputElement.appendChild(awardList);
       this.printLine('');
     }
   }
