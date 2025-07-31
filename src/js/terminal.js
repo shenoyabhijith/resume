@@ -107,8 +107,14 @@ class Terminal {
   displayBanner() {
     const { banner } = this.content;
     
-    this.printLine(banner.asciiArt, 'ascii-art');
-    this.printLine(banner.subtitle, 'subtitle');
+    if (banner.asciiArt) {
+      this.printLine(banner.asciiArt, 'ascii-art');
+    }
+    
+    if (banner.subtitle) {
+      this.printLine(banner.subtitle, 'subtitle');
+    }
+    
     this.printLine('');
     this.printLine(`Type 'help' for available commands.`);
     this.printLine('');
