@@ -57,7 +57,7 @@ class Terminal {
       
       // Extract available commands
       this.availableCommands = Object.keys(this.content.commands);
-      this.availableCommands.push('help', 'clear', 'settings', 'certifications', 'awards');
+      this.availableCommands.push('help', 'clear', 'settings');
     } catch (error) {
       console.error('Error loading content:', error);
       this.printLine('Error loading content. Please refresh the page.', 'error');
@@ -248,6 +248,10 @@ class Terminal {
         this.printLine(`  ${cmd}`, 'help-item');
       }
     });
+    
+    // Add special commands that aren't in the commands object
+    this.printLine(`  certifications`, 'help-item');
+    this.printLine(`  awards`, 'help-item');
     
     this.printLine('');
     this.printLine('  clear    - Clear the terminal screen');
