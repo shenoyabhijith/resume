@@ -230,10 +230,10 @@ class Terminal {
         this.openSettings();
         break;
       default:
-        if (this.content.commands[cmd]) {
-          this.displayCommandContent(cmd, args);
-        } else if (cmd === 'certifications' || cmd === 'awards') {
+        if (cmd === 'certifications' || cmd === 'awards') {
           this.displaySpecialContent(cmd);
+        } else if (this.content.commands[cmd]) {
+          this.displayCommandContent(cmd, args);
         } else {
           this.printLine(`Command not found: ${cmd}`, 'error');
           this.printLine(`Type 'help' for available commands.`);
