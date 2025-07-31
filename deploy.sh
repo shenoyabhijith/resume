@@ -19,7 +19,20 @@ git pull origin main
 echo "🔄 Creating/checking out gh-pages branch..."
 git checkout -B gh-pages
 
-# Step 4: Push it forcefully to overwrite the remote gh-pages
+# Step 4: Remove all files except .git
+echo "🧹 Clearing existing files..."
+find . -mindepth 1 -not -path './.git*' -delete
+
+# Step 5: Copy built files to root
+echo "📋 Copying built files..."
+cp -r dist/* .
+
+# Step 6: Add and commit
+echo "💾 Committing changes..."
+git add .
+git commit -m "Deploy to GitHub Pages - $(date)"
+
+# Step 7: Push it forcefully to overwrite the remote gh-pages
 echo "🚀 Pushing to GitHub Pages..."
 git push origin gh-pages --force
 
