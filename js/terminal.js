@@ -113,20 +113,20 @@ class Terminal {
   
   displayBanner() {
     const { banner } = this.content;
-    
+
     if (banner.asciiArt) {
-      // Render ASCII art in one go, preserving newlines
-      const artDiv = document.createElement('div');
-      artDiv.className = 'ascii-art';
-      artDiv.innerText = banner.asciiArt;
-      this.outputElement.appendChild(artDiv);
+      // Render ASCII art preserving all spacing by using a <pre> element
+      const artPre = document.createElement('pre');
+      artPre.className = 'ascii-art';
+      artPre.textContent = banner.asciiArt;
+      this.outputElement.appendChild(artPre);
       this.scrollToBottom();
     }
-    
+
     if (banner.subtitle) {
       this.printLine(banner.subtitle, 'subtitle');
     }
-    
+
     this.printLine('');
     this.printLine(`Type 'help' for available commands.`);
     this.printLine('');
