@@ -11,7 +11,7 @@ npm run export
 git checkout -b gh-pages 2>/dev/null || git checkout gh-pages
 
 # Remove all files except .git
-git rm -rf . || true
+find . -mindepth 1 -not -path './.git*' -delete
 
 # Copy dist contents to root
 cp -r dist/* .
@@ -29,5 +29,5 @@ git push origin gh-pages --force
 git checkout main
 
 echo "✅ Deployment complete!"
-echo "🌐 Your site should be available at: https://shenoyabhijith.github.io/terminal-portfolio"
+echo "🌐 Your site should be available at: https://shenoyabhijith.github.io/terminal-portfolio-new"
 echo "⏰ It may take a few minutes for changes to appear." 
