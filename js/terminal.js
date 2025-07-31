@@ -252,10 +252,6 @@ class Terminal {
       }
     });
     
-    // Add special commands that aren't in the commands object
-    this.printLine(`  certifications`, 'help-item');
-    this.printLine(`  awards`, 'help-item');
-    
     this.printLine('');
     this.printLine('  clear    - Clear the terminal screen');
     this.printLine('  settings - Open settings panel');
