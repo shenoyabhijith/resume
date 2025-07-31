@@ -49,7 +49,6 @@ class SettingsManager {
     
     // Banner settings
     this.addSection('Banner');
-    this.addTextarea('banner.asciiArt', 'ASCII Art', this.content.banner.asciiArt);
     this.addTextInput('banner.subtitle', 'Subtitle', this.content.banner.subtitle);
   }
   

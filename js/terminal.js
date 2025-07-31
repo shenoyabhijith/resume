@@ -113,20 +113,10 @@ class Terminal {
   
   displayBanner() {
     const { banner } = this.content;
-
-    if (banner.asciiArt) {
-      // Render ASCII art preserving all spacing by using a <pre> element
-      const artPre = document.createElement('pre');
-      artPre.className = 'ascii-art';
-      artPre.textContent = banner.asciiArt;
-      this.outputElement.appendChild(artPre);
-      this.scrollToBottom();
-    }
-
+    // ASCII art rendering removed
     if (banner.subtitle) {
       this.printLine(banner.subtitle, 'subtitle');
     }
-
     this.printLine('');
     this.printLine(`Type 'help' for available commands.`);
     this.printLine('');
