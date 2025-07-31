@@ -136,8 +136,6 @@ body {
   overflow-y: auto;
   position: relative;
   z-index: 3;
-  display: flex;
-  flex-direction: column;
 }
 
 .terminal-container::-webkit-scrollbar {
@@ -155,13 +153,11 @@ body {
 
 /* Terminal Output */
 #terminal-output {
-  flex: 1;
   white-space: pre-wrap;
   word-wrap: break-word;
   overflow-wrap: break-word;
   line-height: 1.6; /* Increased from default */
   font-size: 16px; /* Ensure consistent font size */
-  overflow-y: auto;
 }
 
 /* Input Line */
@@ -169,7 +165,6 @@ body {
   display: flex;
   align-items: center;
   margin-top: 15px; /* Increased from 10px */
-  /* Remove flex-shrink - let it be part of normal flow */
 }
 
 .prompt {
@@ -490,11 +485,12 @@ body {
   <div class="crt-container">
     <div class="crt-screen">
       <div class="terminal-container" id="terminal-container">
-        <main id="terminal-output" aria-live="polite"></main>
-        <div class="input-line" id="input-line">
-          <span id="prompt" class="prompt">user@portfolio:~$ </span>
-          <input type="text" id="terminal-input" class="terminal-input" autocomplete="off" spellcheck="false" autofocus>
-        </div>
+        <main id="terminal-output" aria-live="polite">
+          <div class="input-line" id="input-line">
+            <span id="prompt" class="prompt">user@portfolio:~$ </span>
+            <input type="text" id="terminal-input" class="terminal-input" autocomplete="off" spellcheck="false" autofocus>
+          </div>
+        </main>
       </div>
     </div>
   </div>

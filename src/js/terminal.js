@@ -29,6 +29,9 @@ class Terminal {
     // Display banner
     this.displayBanner();
     
+    // Recreate input line after banner
+    this.recreateInputLine();
+    
     // Focus input
     this.inputElement.focus();
     
@@ -153,8 +156,9 @@ class Terminal {
         this.executeCommand(command);
       }
       
-      // Clear input
+      // Clear input and recreate input line at the bottom
       input.value = '';
+      this.recreateInputLine();
       return;
     }
   }
@@ -241,6 +245,7 @@ class Terminal {
   
   clearTerminal() {
     this.outputElement.innerHTML = '';
+    this.recreateInputLine();
   }
   
   openSettings() {
@@ -398,6 +403,54 @@ class Terminal {
       behavior: 'smooth'
     });
   }
+
+  recreateInputLine() {
+    // Remove existing input line
+    const existingInputLine = document.getElementById('input-line');
+    if (existingInputLine) {
+      existingInputLine.remove();
+    }
+
+    // Create new input line
+    const newInputLine = document.createElement('div');
+    newInputLine.id = 'input-line';
+    newInputLine.className = 'input-line';
+    
+    // Create prompt span
+    const promptSpan = document.createElement('span');
+    promptSpan.id = 'prompt';
+    promptSpan.className = 'prompt';
+    promptSpan.textContent = this.content.prompt;
+    
+    // Create input element
+    const inputElement = document.createElement('input');
+    inputElement.type = 'text';
+    inputElement.id = 'terminal-input';
+    inputElement.className = 'terminal-input';
+    inputElement.autocomplete = 'off';
+    inputElement.spellcheck = false;
+    
+    // Add event listener to new input
+    inputElement.addEventListener('keydown', this.handleKeyDown.bind(this));
+    
+    // Append elements
+    newInputLine.appendChild(promptSpan);
+    newInputLine.appendChild(inputElement);
+    
+    // Add to output
+    this.outputElement.appendChild(newInputLine);
+    
+    // Update references
+    this.inputElement = inputElement;
+    this.promptElement = promptSpan;
+    this.inputLine = newInputLine;
+    
+    // Focus the new input
+    inputElement.focus();
+    
+    // Scroll to bottom
+    this.scrollToBottom();
+  }
 }
 
 // Initialize terminal when DOM is loaded
@@ -411,5 +464,6 @@ document.addEventListener('DOMContentLoaded', () => {
     terminal.setupJsonLdSchema();
     terminal.clearTerminal();
     terminal.displayBanner();
+    terminal.recreateInputLine();
   });
 });
