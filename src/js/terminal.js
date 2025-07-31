@@ -363,7 +363,10 @@ class Terminal {
       this.typeWriter(line, text);
     } else {
       this.outputElement.appendChild(line);
-      this.scrollToBottom();
+      // Use requestAnimationFrame for smoother scrolling
+      requestAnimationFrame(() => {
+        this.scrollToBottom();
+      });
     }
   }
   
@@ -376,16 +379,24 @@ class Terminal {
       if (i < text.length) {
         element.textContent += text.charAt(i);
         i++;
-        this.scrollToBottom();
+        // Use requestAnimationFrame for smoother scrolling
+        requestAnimationFrame(() => {
+          this.scrollToBottom();
+        });
       } else {
         clearInterval(timer);
+        // Final scroll to ensure we're at the bottom
+        this.scrollToBottom();
       }
     }, speed);
   }
   
   scrollToBottom() {
-    // Scroll the terminal container to the bottom
-    this.terminalContainer.scrollTop = this.terminalContainer.scrollHeight;
+    // Use smooth scrolling behavior
+    this.terminalContainer.scrollTo({
+      top: this.terminalContainer.scrollHeight,
+      behavior: 'smooth'
+    });
   }
 }
 
