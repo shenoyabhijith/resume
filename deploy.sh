@@ -7,22 +7,20 @@ echo "🚀 Deploying Terminal Portfolio to GitHub Pages..."
 echo "📦 Building project..."
 npm run export
 
-# Create gh-pages branch if it doesn't exist
-git checkout -b gh-pages 2>/dev/null || git checkout gh-pages
+# Step 1: Checkout main
+echo "🔄 Checking out main branch..."
+git checkout main
 
-# Remove all files except .git
-find . -mindepth 1 -not -path './.git*' -delete
+# Step 2: Pull latest changes
+echo "📥 Pulling latest changes..."
+git pull origin main
 
-# Copy dist contents to root
-cp -r dist/* .
+# Step 3: Create or switch to gh-pages branch
+echo "🔄 Creating/checking out gh-pages branch..."
+git checkout -B gh-pages
 
-# Add all files
-git add .
-
-# Commit changes
-git commit -m "Deploy to GitHub Pages - $(date)"
-
-# Push to gh-pages branch
+# Step 4: Push it forcefully to overwrite the remote gh-pages
+echo "🚀 Pushing to GitHub Pages..."
 git push origin gh-pages --force
 
 # Switch back to main branch
