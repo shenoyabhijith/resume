@@ -1,79 +1,74 @@
 # Bug Tracking
 
-## Current Issues
+## Resolved Issues ✅
 
-### 1. HTML File Corruption (Critical) ✅ RESOLVED
-- **File**: `src/index.html`
-- **Issue**: The HTML file contained hundreds of duplicate live reload script blocks
-- **Impact**: This was causing the CSS to break and the page to load slowly
-- **Status**: ✅ FIXED - Removed duplicate scripts and cleaned up HTML structure
+### Terminal Output Rendering
+- **Issue**: Command output was rendering above the command line instead of below
+- **Fix**: Modified `handleKeyDown` in `src/js/terminal.js` to remove the duplicate output line
+- **Status**: ✅ RESOLVED
 
-### 2. CSS Layout Issues ✅ RESOLVED
-- **File**: `src/css/terminal.css`
-- **Issue**: Terminal container layout had flexbox conflicts
-- **Impact**: Content was not displaying properly
-- **Status**: ✅ FIXED - Optimized layout structure with proper flexbox implementation
+### Auto-scrolling
+- **Issue**: Terminal wasn't auto-scrolling smoothly when new content was added
+- **Fix**: Added `requestAnimationFrame(() => { this.scrollToBottom(); })` in `typeWriter` and `printLine` methods
+- **Status**: ✅ RESOLVED
 
-### 3. Dev Server Path Issue ✅ RESOLVED
-- **File**: `dev.js`
-- **Issue**: Development server was looking for files in wrong directory
-- **Impact**: CSS files were returning 404 errors
-- **Status**: ✅ FIXED - Updated server to serve from `./src/` directory correctly
+### Dynamic Input Line
+- **Issue**: Input line was fixed at bottom, should follow content
+- **Fix**: Added `recreateInputLine()` method and moved input line inside output container
+- **Status**: ✅ RESOLVED
 
-### 4. Dev Server Stability Issue ✅ RESOLVED
-- **File**: `dev.js`
-- **Issue**: Development server was crashing and terminating unexpectedly
-- **Impact**: Server would stop running and require manual restart
-- **Status**: ✅ FIXED - Added comprehensive error handling and graceful shutdown
+### GitHub Pages Deployment Issues
+- **Issue**: Multiple deployment problems with old code showing
+- **Fix**: Proper build script and gh-pages branch management
+- **Status**: ✅ RESOLVED
 
-### 5. Terminal Output Rendering Issue ✅ RESOLVED
-- **File**: `src/js/terminal.js`
-- **Issue**: Command output was appearing above the command line instead of below it
-- **Impact**: Terminal behavior was counterintuitive and didn't match real terminal UX
-- **Status**: ✅ FIXED - Modified handleKeyDown method to not display command line in output, keeping it at bottom
+### Built HTML Hardcoded Issues
+- **Issue**: Built HTML contained development-only code causing errors
+- **Fix**: Added `removeDevCode()` function in `build.js` to strip live reload scripts
+- **Status**: ✅ RESOLVED
 
-### 6. Terminal Auto-Scrolling Issue ✅ RESOLVED
-- **File**: `src/js/terminal.js`
-- **Issue**: Terminal wasn't auto-scrolling smoothly during typewriter effect and content rendering
-- **Impact**: User experience was choppy and not smooth during content display
-- **Status**: ✅ FIXED - Improved scrollToBottom method with smooth scrolling and requestAnimationFrame for better performance
+### JavaScript Minification Issues
+- **Issue**: Minification was corrupting JSON-LD schema and causing prompt to be hardcoded
+- **Fix**: Temporarily disabled JavaScript minification in `build.js`
+- **Status**: ✅ RESOLVED
 
-### 7. Terminal Input Line Positioning Issue ✅ RESOLVED
-- **File**: `src/js/terminal.js`, `src/index.html`, `src/css/terminal.css`
-- **Issue**: Terminal input line was fixed at the bottom instead of following content dynamically
-- **Impact**: Terminal didn't behave like real terminals where input follows the last output
-- **Status**: ✅ FIXED - Restructured HTML/CSS/JS to make input line follow content dynamically
+### Certifications & Awards Display
+- **Issue**: Certifications and awards were showing as plain text instead of styled cards
+- **Fix**: Added `displaySpecialContent()` function with proper CSS classes and scroll handling
+- **Status**: ✅ RESOLVED
 
-## Fixes Applied
+### Settings Functionality
+- **Issue**: Settings were broken with POST request errors and poor UI
+- **Fix**: Made settings client-side only, simplified form generation, improved UI styling
+- **Status**: ✅ RESOLVED
 
-1. **HTML Cleanup**: Removed all duplicate live reload scripts, keeping only one
-2. **CSS Optimization**: Improved terminal container layout with proper flexbox implementation
-3. **Dev Server Fix**: Updated server to correctly serve files from `./src/` directory
-4. **Server Stability**: Added comprehensive error handling and graceful shutdown
-5. **Performance**: Reduced file size significantly by removing duplicate code
-6. **Terminal UX Fix**: Fixed command output rendering to appear below command line like real terminals
-7. **Auto-scrolling Improvement**: Enhanced terminal scrolling with smooth behavior and requestAnimationFrame for better performance
-8. **Dynamic Input Line**: Restructured terminal to make input line follow content dynamically like real terminals
+### Help Menu Duplicates
+- **Issue**: "certifications" and "awards" appeared twice in help menu
+- **Fix**: Removed explicit additions from `showHelp()` method
+- **Status**: ✅ RESOLVED
 
-## Testing Notes
+### Certifications & Awards Styling
+- **Issue**: Card-based design not displaying properly due to missing scroll calls
+- **Fix**: Added `scrollToBottom()` calls in `displaySpecialContent()` method
+- **Status**: ✅ RESOLVED
 
-- ✅ Terminal functionality tested and working
-- ✅ CSS styling is working correctly
-- ✅ Live reload still works with single script
-- ✅ Build process completed successfully
-- ✅ Development server running on http://localhost:3000
-- ✅ Terminal output now renders correctly below command line
-- ✅ Auto-scrolling is smooth and responsive during content rendering
-- ✅ Input line now follows content dynamically like real terminals
+### ASCII Art Settings
+- **Issue**: ASCII art configuration in settings wasn't working
+- **Fix**: Settings functionality has been properly implemented and tested
+- **Status**: ✅ RESOLVED
 
-## Summary
+## Current Status 🎉
 
-All CSS issues have been resolved:
-1. **HTML corruption fixed**: Removed hundreds of duplicate scripts that were breaking the page
-2. **CSS layout optimized**: Improved terminal container structure with proper flexbox
-3. **Dev server fixed**: Corrected file serving paths to properly serve CSS files
-4. **Performance improved**: Significantly reduced file size and loading time
-5. **Build successful**: All components working correctly
-6. **Terminal UX improved**: Fixed output rendering to match real terminal behavior
-7. **Auto-scrolling enhanced**: Smooth scrolling during typewriter effect and content rendering
-8. **Dynamic input line**: Input now follows content dynamically like real terminals 
+All major issues have been resolved! The terminal portfolio now features:
+- ✅ Proper output rendering
+- ✅ Smooth auto-scrolling
+- ✅ Dynamic input line positioning
+- ✅ Working GitHub Pages deployment
+- ✅ Clean built code without development artifacts
+- ✅ Proper certifications and awards display with card-based design
+- ✅ Fully functional settings panel with ASCII art configuration
+- ✅ Clean help menu without duplicates
+- ✅ Subtle 3D mouse tracking animations
+- ✅ Optimized terminal dimensions
+
+The application is now fully functional and deployed at: **https://shenoyabhijith.github.io/resume** 

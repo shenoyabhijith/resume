@@ -374,7 +374,7 @@ class Terminal {
   // Handle special commands that are not in the commands object
   displaySpecialContent(command) {
     if (command === 'certifications') {
-      const certData = this.content.certifications;
+      const certData = this.content.commands.certifications;
       if (!certData) return;
       
       this.printLine('');
@@ -418,7 +418,7 @@ class Terminal {
       });
       
     } else if (command === 'awards') {
-      const awardsData = this.content.awards;
+      const awardsData = this.content.commands.awards;
       if (!awardsData) return;
       
       this.printLine('');
