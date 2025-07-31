@@ -113,20 +113,10 @@ class Terminal {
   
   displayBanner() {
     const { banner } = this.content;
-    
-    if (banner.asciiArt) {
-      // Render ASCII art in one go, preserving newlines
-      const artDiv = document.createElement('div');
-      artDiv.className = 'ascii-art';
-      artDiv.innerText = banner.asciiArt;
-      this.outputElement.appendChild(artDiv);
-      this.scrollToBottom();
-    }
-    
+    // ASCII art rendering removed
     if (banner.subtitle) {
       this.printLine(banner.subtitle, 'subtitle');
     }
-    
     this.printLine('');
     this.printLine(`Type 'help' for available commands.`);
     this.printLine('');
