@@ -139,9 +139,8 @@ class Terminal {
       event.preventDefault();
       const command = input.value.trim();
       
-      // Display the command (even if empty)
-      this.printLine(`${this.content.prompt}${input.value}`);
-      
+      // Don't display the command line in output - it stays at the bottom
+      // Only execute if there's a command
       if (command) {
         // Add to history
         this.commandHistory.unshift(command);
@@ -153,7 +152,6 @@ class Terminal {
         // Execute command
         this.executeCommand(command);
       }
-      // If command is empty, we just printed a blank line above
       
       // Clear input
       input.value = '';
