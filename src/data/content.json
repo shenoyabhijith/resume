@@ -11,8 +11,8 @@
   },
   "prompt": "abhijith@portfolio:~$ ",
   "banner": {
-    "asciiArt": "",
-    "subtitle": ""
+    "asciiArt": "    ___    ___    _    _    ___    ___ \n   / _ \\  |_ _|  / \\  | |  |_ _|  / _ \\ \n  | | | |  | |  / _ \\ | |   | |  | | | | \n  | |_| |  | | / ___ \\| |___| |  | |_| | \n   \\___/  |___/_/   \\_\\____|___|  \\___/ \n\n   ___   ____  \n  / _ \\ / ___| \n | | | |\\___ \\ \n | |_| | ___) | \n  \\___/ |____/ \n",
+    "subtitle": "Welcome to ABHI OS - Terminal Portfolio v1.0"
   },
   "commands": {
     "about": {
