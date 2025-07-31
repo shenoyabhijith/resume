@@ -41,14 +41,18 @@ class Terminal {
   
   async loadContent() {
     try {
+      console.log('Loading content from ./data/content.json...');
       const response = await fetch('./data/content.json');
+      console.log('Response status:', response.status);
       this.content = await response.json();
+      console.log('Content loaded:', this.content);
       
       // Update page title and meta description
       document.title = this.content.meta.title;
       document.querySelector('meta[name="description"]').content = this.content.meta.description;
       
       // Update prompt
+      console.log('Updating prompt to:', this.content.prompt);
       this.promptElement.textContent = this.content.prompt;
       
       // Extract available commands
