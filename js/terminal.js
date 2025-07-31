@@ -412,6 +412,11 @@ class Terminal {
       this.outputElement.appendChild(certList);
       this.printLine('');
       
+      // Scroll to bottom after adding content
+      requestAnimationFrame(() => {
+        this.scrollToBottom();
+      });
+      
     } else if (command === 'awards') {
       const awardsData = this.content.awards;
       if (!awardsData) return;
@@ -450,6 +455,11 @@ class Terminal {
       
       this.outputElement.appendChild(awardList);
       this.printLine('');
+      
+      // Scroll to bottom after adding content
+      requestAnimationFrame(() => {
+        this.scrollToBottom();
+      });
     }
   }
   
