@@ -37,6 +37,9 @@ class Terminal {
     
     // Set up JSON-LD schema
     this.setupJsonLdSchema();
+    
+    // Initialize 3D mouse tracking
+    this.init3DEffects();
   }
   
   async loadContent() {
@@ -547,6 +550,64 @@ class Terminal {
     
     // Scroll to bottom
     this.scrollToBottom();
+  }
+  
+  init3DEffects() {
+    const crtScreen = document.querySelector('.crt-screen');
+    if (!crtScreen) return;
+    
+    let isMouseOver = false;
+    let mouseX = 0;
+    let mouseY = 0;
+    
+    // Mouse enter event
+    crtScreen.addEventListener('mouseenter', () => {
+      isMouseOver = true;
+      crtScreen.classList.add('mouse-track');
+    });
+    
+    // Mouse leave event
+    crtScreen.addEventListener('mouseleave', () => {
+      isMouseOver = false;
+      crtScreen.classList.remove('mouse-track');
+      
+      // Reset to original position
+      const crtCurve = getComputedStyle(document.documentElement).getPropertyValue('--crt-curve') || '1';
+      crtScreen.style.transform = `rotateX(calc(${crtCurve} * 3deg))`;
+      crtScreen.style.boxShadow = '0 0 30px rgba(0, 255, 0, 0.25)';
+    });
+    
+    // Mouse move event
+    crtScreen.addEventListener('mousemove', (event) => {
+      if (!isMouseOver) return;
+      
+      const rect = crtScreen.getBoundingClientRect();
+      const centerX = rect.left + rect.width / 2;
+      const centerY = rect.top + rect.height / 2;
+      
+      // Calculate mouse position relative to center (-1 to 1)
+      mouseX = (event.clientX - centerX) / (rect.width / 2);
+      mouseY = (event.clientY - centerY) / (rect.height / 2);
+      
+      // Clamp values to prevent extreme rotations
+      mouseX = Math.max(-1, Math.min(1, mouseX));
+      mouseY = Math.max(-1, Math.min(1, mouseY));
+      
+      // Apply subtle 3D rotation based on mouse position
+      const rotateY = mouseX * 3; // Max 3 degrees
+      const rotateX = -mouseY * 2; // Max 2 degrees (negative for natural feel)
+      const crtCurve = getComputedStyle(document.documentElement).getPropertyValue('--crt-curve') || '1';
+      
+      // Combine CRT curve with mouse tracking
+      const baseRotateX = parseFloat(crtCurve) * 3;
+      const finalRotateX = baseRotateX + rotateX;
+      
+      crtScreen.style.transform = `rotateX(${finalRotateX}deg) rotateY(${rotateY}deg)`;
+      
+      // Subtle shadow adjustment
+      const shadowIntensity = 0.25 + (Math.abs(mouseX) + Math.abs(mouseY)) * 0.1;
+      crtScreen.style.boxShadow = `0 0 ${30 + Math.abs(mouseX + mouseY) * 10}px rgba(0, 255, 0, ${shadowIntensity})`;
+    });
   }
 }
 

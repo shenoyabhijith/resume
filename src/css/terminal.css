@@ -55,6 +55,19 @@ body {
   position: relative;
   overflow: visible; /* Changed from hidden to allow terminal container to scroll */
   transform: rotateX(calc(var(--crt-curve) * 3deg)); /* Reduced curve for subtler effect */
+  transition: transform 0.3s ease-out;
+  transform-style: preserve-3d;
+}
+
+/* 3D Mouse Interaction */
+.crt-screen:hover {
+  transform: rotateX(calc(var(--crt-curve) * 3deg)) rotateY(2deg) rotateZ(0.5deg);
+  box-shadow: 0 0 40px rgba(0, 255, 0, 0.3);
+}
+
+/* Add mouse tracking for dynamic 3D effect */
+.crt-screen.mouse-track {
+  transition: transform 0.1s ease-out;
 }
 
 /* CRT Effects */
