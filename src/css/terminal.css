@@ -128,7 +128,8 @@ body {
   overflow-y: auto;
   position: relative;
   z-index: 3;
-  /* Remove flexbox - let content flow naturally */
+  display: flex;
+  flex-direction: column;
 }
 
 .terminal-container::-webkit-scrollbar {
@@ -146,12 +147,13 @@ body {
 
 /* Terminal Output */
 #terminal-output {
-  /* Remove flex properties - let it flow naturally */
+  flex: 1;
   white-space: pre-wrap;
   word-wrap: break-word;
   overflow-wrap: break-word;
   line-height: 1.6; /* Increased from default */
   font-size: 16px; /* Ensure consistent font size */
+  overflow-y: auto;
 }
 
 /* Input Line */
