@@ -115,7 +115,12 @@ class Terminal {
     const { banner } = this.content;
     
     if (banner.asciiArt) {
-      this.printLine(banner.asciiArt, 'ascii-art');
+      // Render ASCII art in one go, preserving newlines
+      const artDiv = document.createElement('div');
+      artDiv.className = 'ascii-art';
+      artDiv.innerText = banner.asciiArt;
+      this.outputElement.appendChild(artDiv);
+      this.scrollToBottom();
     }
     
     if (banner.subtitle) {
