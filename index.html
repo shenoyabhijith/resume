@@ -289,6 +289,65 @@ body {
   color: rgba(51, 255, 51, 0.8);
 }
 
+/* New styles for certifications and awards */
+.certification-list, .award-list {
+  margin: 15px 0;
+}
+
+.certification-item, .award-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 12px;
+  padding: 8px 12px;
+  background: rgba(51, 255, 51, 0.05);
+  border-left: 3px solid var(--term-color);
+  border-radius: 4px;
+  transition: all 0.2s ease;
+}
+
+.certification-item:hover, .award-item:hover {
+  background: rgba(51, 255, 51, 0.1);
+  transform: translateX(5px);
+}
+
+.certification-info, .award-info {
+  flex: 1;
+}
+
+.certification-name, .award-name {
+  font-weight: bold;
+  color: var(--term-color);
+  margin-bottom: 2px;
+}
+
+.certification-date, .award-period {
+  font-size: 0.85em;
+  color: rgba(51, 255, 51, 0.7);
+  font-style: italic;
+}
+
+.certification-badge, .award-badge {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--term-color);
+  margin-right: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  color: var(--term-bg);
+  font-weight: bold;
+}
+
+.certification-badge::before {
+  content: "✓";
+}
+
+.award-badge::before {
+  content: "★";
+}
+
 .error-message {
   color: #ff5555;
 }
