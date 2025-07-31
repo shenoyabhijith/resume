@@ -1,1 +1,0 @@
-{"name":"terminal-portfolio-new","version":"1.0.0","scripts":{"dev":"node dev.js","export":"node build.js"},"devDependencies":{"ws":"^8.14.2","chokidar":"^3.5.3"}}
