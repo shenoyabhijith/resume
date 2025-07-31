@@ -197,6 +197,21 @@ function createManifest() {
   console.log('Created PWA manifest and service worker');
 }
 
+// Remove development-only code from HTML
+function removeDevCode() {
+  const htmlPath = path.join(DIST_DIR, 'index.html');
+  let html = fs.readFileSync(htmlPath, 'utf8');
+  
+  // Remove live reload script
+  html = html.replace(
+    /<script>\s*\/\/ Live reload script[\s\S]*?<\/script>/g,
+    ''
+  );
+  
+  fs.writeFileSync(htmlPath, html);
+  console.log('Removed development-only code from HTML');
+}
+
 // Main build function
 function build() {
   console.log('Building project...');
@@ -205,6 +220,7 @@ function build() {
   copyFiles();
   inlineCSS();
   minifyJS();
+  removeDevCode();
   createManifest();
   
   console.log('Build complete!');
