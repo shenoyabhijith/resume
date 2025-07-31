@@ -57,7 +57,7 @@ class Terminal {
       
       // Extract available commands
       this.availableCommands = Object.keys(this.content.commands);
-      this.availableCommands.push('help', 'clear', 'settings');
+      this.availableCommands.push('help', 'clear', 'settings', 'certifications', 'awards');
     } catch (error) {
       console.error('Error loading content:', error);
       this.printLine('Error loading content. Please refresh the page.', 'error');
@@ -229,6 +229,8 @@ class Terminal {
       default:
         if (this.content.commands[cmd]) {
           this.displayCommandContent(cmd, args);
+        } else if (cmd === 'certifications' || cmd === 'awards') {
+          this.displaySpecialContent(cmd);
         } else {
           this.printLine(`Command not found: ${cmd}`, 'error');
           this.printLine(`Type 'help' for available commands.`);
@@ -363,8 +365,40 @@ class Terminal {
       }
     }
     
-    // Add extra blank line at the end of each command output
     this.printLine('');
+  }
+  
+  // Handle special commands that are not in the commands object
+  displaySpecialContent(command) {
+    if (command === 'certifications') {
+      const certData = this.content.certifications;
+      if (!certData) return;
+      
+      this.printLine('');
+      this.printLine(certData.title, 'section-title');
+      
+      certData.list.forEach(item => {
+        this.printLine('');
+        this.printLine(item.name, 'certification-name');
+        this.printLine(item.date, 'certification-date');
+      });
+      
+      this.printLine('');
+    } else if (command === 'awards') {
+      const awardsData = this.content.awards;
+      if (!awardsData) return;
+      
+      this.printLine('');
+      this.printLine(awardsData.title, 'section-title');
+      
+      awardsData.list.forEach(item => {
+        this.printLine('');
+        this.printLine(item.name, 'award-name');
+        this.printLine(item.period, 'award-period');
+      });
+      
+      this.printLine('');
+    }
   }
   
   printLine(text, className = '') {
