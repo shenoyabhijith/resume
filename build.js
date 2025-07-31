@@ -72,23 +72,39 @@ function minifyJS() {
     return;
   }
   
-  const jsFiles = fs.readdirSync(jsDir).filter(file => file.endsWith('.js'));
+  // Skip minification to prevent syntax errors
+  console.log('Skipping minification to preserve syntax');
   
-  for (const file of jsFiles) {
-    const filePath = path.join(jsDir, file);
-    let js = fs.readFileSync(filePath, 'utf8');
+  // const jsFiles = fs.readdirSync(jsDir).filter(file => file.endsWith('.js'));
+  
+  // for (const file of jsFiles) {
+  //   const filePath = path.join(jsDir, file);
+  //   let js = fs.readFileSync(filePath, 'utf8');
     
-    // Simple minification (remove comments and extra whitespace)
-    js = js
-      .replace(/\/\*[\s\S]*?\*\//g, '') // Remove multi-line comments
-      .replace(/\/\/.*$/gm, '') // Remove single-line comments
-      .replace(/\s+/g, ' ') // Replace multiple spaces with a single space
-      .replace(/\s?([{}();,=+*/%&|^~!<>?:])\s?/g, '$1') // Remove spaces around operators
-      .trim(); // Trim leading/trailing whitespace
+  //   // Simple minification (remove comments and extra whitespace)
+  //   js = js
+  //     .replace(/\/\*[\s\S]*?\*\//g, '') // Remove multi-line comments
+  //     .replace(/\/\/.*$/gm, '') // Remove single-line comments
+  //     .replace(/\s+/g, ' ') // Replace multiple spaces with a single space
+  //     .replace(/\s?([{}();,=+*/%&|^~!<>?:])\s?/g, '$1') // Remove spaces around operators
+  //     .replace(/\s*:\s*/g, ':') // Remove spaces around colons in object properties
+  //     .replace(/\s*,\s*/g, ',') // Remove spaces around commas
+  //     .replace(/\s*=\s*/g, '=') // Remove spaces around equals
+  //     .replace(/\s*\+\s*/g, '+') // Remove spaces around plus
+  //     .replace(/\s*-\s*/g, '-') // Remove spaces around minus
+  //     .replace(/\s*>\s*/g, '>') // Remove spaces around greater than
+  //     .replace(/\s*<\s*/g, '<') // Remove spaces around less than
+  //     .replace(/\s*\(\s*/g, '(') // Remove spaces around opening parentheses
+  //     .replace(/\s*\)\s*/g, ')') // Remove spaces around closing parentheses
+  //     .replace(/\s*\[\s*/g, '[') // Remove spaces around opening brackets
+  //     .replace(/\s*\]\s*/g, ']') // Remove spaces around closing brackets
+  //     .replace(/\s*{\s*/g, '{') // Remove spaces around opening braces
+  //     .replace(/\s*}\s*/g, '}') // Remove spaces around closing braces
+  //     .trim(); // Trim leading/trailing whitespace
     
-    fs.writeFileSync(filePath, js);
-    console.log(`Minified ${file}`);
-  }
+  //   fs.writeFileSync(filePath, js);
+  //   console.log(`Minified ${file}`);
+  // }
 }
 
 // Create PWA manifest
